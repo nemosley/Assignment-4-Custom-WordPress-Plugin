@@ -1,0 +1,13 @@
+# NSM Metro Plugin
+
+## Plugins vs Theme Functions
+Plugins are used for features that should work no matter what theme is active. Theme functions.php is only for that specific theme. I used a plugin because my features like reading time and footer message should still work even if the theme changes.
+
+## Actions vs Filters
+Actions are used to add something to the page, like my footer message. Filters are used to modify existing content. I used a filter to add reading time to posts before the content is displayed.
+
+## Shortcodes
+Shortcodes allow you to add custom content inside posts or pages. I created a shortcode that displays a “Tech Highlight” label. It only shows when you type it into a page or post.
+
+## Real-World Reflection
+This plugin improves the user experience by giving readers more information. The reading time helps users know how long a post will take. The footer message makes the site feel more complete. The shortcode allows important content to be highlighted, which is useful for digital media and technology articles.
