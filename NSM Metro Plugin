@@ -1,0 +1,54 @@
+<?php
+/*
+Plugin Name: NSM Metro Plugin
+Description: Simple plugin for Metro Report (footer message, reading time, and shortcode)
+Version: 1.0
+Author: Nevaeh Mosley
+*/
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+// Function to add a footer message to the site
+// Action hook
+//1st plugin feature
+function nsm_footer_message() {
+    echo "<p style='text-align:center;'>Thanks for visiting the Metro Report</p>";
+}
+add_action('wp_footer', 'nsm_footer_message');
+
+
+
+// Filter hook
+// Function to add reading time to post content
+//2nd plugin feature
+function nsm_reading_time($content) {
+    if ( is_single() && in_the_loop() ) {
+        $word_count = str_word_count(strip_tags($content));
+        $reading_time = ceil($word_count / 200);
+
+        $text = "<p><strong>Reading time: " . $reading_time . " min</strong></p>";
+
+        return $text . $content;
+    }
+
+    return $content;
+}
+add_filter('the_content', 'nsm_reading_time');
+
+
+
+// Shortcode
+//3rd plugin feature
+// Function to create a [tech_label] shortcode that outputs a styled label
+function nsm_tech_label($atts) {
+    $atts = shortcode_atts(
+        array(
+            'label' => 'Tech Highlight'
+        ),
+        $atts
+    );
+
+    return "<div style='padding:8px; background:#eee; display:inline-block;'>" . esc_html($atts['label']) . "</div>";
+}
+add_shortcode('tech_label', 'nsm_tech_label');
